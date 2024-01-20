@@ -23,7 +23,7 @@
 -include("mod_event_pusher_events.hrl").
 -include("mongoose_config_spec.hrl").
 
--type backend() :: http | push | rabbit | sns.
+-type backend() :: http | push | rabbit | sns | kafka.
 -type event() :: #user_status_event{} | #chat_event{} | #unack_msg_event{}.
 -export_type([event/0]).
 
@@ -90,7 +90,8 @@ config_metrics(HostType) ->
 backend_module(http) -> mod_event_pusher_http;
 backend_module(push) -> mod_event_pusher_push;
 backend_module(rabbit) -> mod_event_pusher_rabbit;
-backend_module(sns) -> mod_event_pusher_sns.
+backend_module(sns) -> mod_event_pusher_sns;
+backend_module(kafka) -> mod_event_pusher_kafka.
 
 all_backends() ->
-    [http, push, rabbit, sns].
+    [http, push, rabbit, sns, kafka].
